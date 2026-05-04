@@ -1,5 +1,6 @@
+import { lazy, Suspense } from 'react';
 import { HeroGeometric } from '@/components/ui/shape-landing-hero';
-import { HowItWorksTabs } from '@/components/ui/HowItWorksTabs';
+const HowItWorksTabs = lazy(() => import('@/components/ui/HowItWorksTabs').then(m => ({ default: m.HowItWorksTabs })));
 
 export default function Home() {
   return (
@@ -13,7 +14,9 @@ export default function Home() {
 
       {/* How It Works */}
       <section id="how-it-works" className="bg-[#050505]">
-        <HowItWorksTabs />
+        <Suspense fallback={<div className="h-64 bg-[#050505]" />}>
+          <HowItWorksTabs />
+        </Suspense>
       </section>
     </div>
   );
