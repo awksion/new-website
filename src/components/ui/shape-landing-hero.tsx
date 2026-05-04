@@ -23,10 +23,10 @@ function ElegantShape({
       initial={{ opacity: 0, y: -150, rotate: rotate - 15 }}
       animate={{ opacity: 1, y: 0, rotate: rotate }}
       transition={{
-        duration: 1.0,
+        duration: 1.5,
         delay: delay * 0.5,
         ease: [0.23, 0.86, 0.39, 0.96],
-        opacity: { duration: 0.6 },
+        opacity: { duration: 0.9 },
       }}
       className={cn("absolute", className)}
     >
@@ -71,8 +71,8 @@ function HeroGeometric({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        delay: 0.05 + i * 0.1,
+        duration: 0.9,
+        delay: 0.1 + i * 0.15,
         ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
       },
     }),
