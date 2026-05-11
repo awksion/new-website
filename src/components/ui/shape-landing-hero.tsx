@@ -57,11 +57,13 @@ function ElegantShape({
 }
 
 function HeroGeometric({
-  badge = "Fan-Powered Live Music",
+  badge = "Fan-Powered Music",
+  badge2 = "Fan-Powered Films",
   title1 = "Stop Waiting for the Tour.",
   title2 = "Bring the Tour to You.",
 }: {
   badge?: string;
+  badge2?: string;
   title1?: string;
   title2?: string;
 }) {
@@ -128,10 +130,16 @@ function HeroGeometric({
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
+            className="inline-flex items-center gap-3 mb-8 md:mb-12"
           >
-            <span className="w-2 h-2 rounded-full bg-[#B4FF00]/80 inline-block" />
-            <span className="text-sm text-white/60 tracking-wide">{badge}</span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08]">
+              <span className="w-2 h-2 rounded-full bg-[#B4FF00]/80 inline-block" />
+              <span className="text-sm text-white/60 tracking-wide">{badge}</span>
+            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08]">
+              <span className="w-2 h-2 rounded-full bg-purple-400/80 inline-block" />
+              <span className="text-sm text-white/60 tracking-wide">{badge2}</span>
+            </span>
           </motion.div>
 
           <motion.div
@@ -158,7 +166,7 @@ function HeroGeometric({
             animate="visible"
           >
             <p className="text-base sm:text-lg md:text-xl text-white/50 mb-10 leading-relaxed font-light tracking-wide max-w-2xl mx-auto px-4">
-              The first fan-funded live music platform. Bid on your city, win the show, secure your ticket.
+              The first fan-funded festival platform allowing the market to dictate the price. Browse our selection of new content by independent artists and vote for the projects you want brought to life.
             </p>
           </motion.div>
 

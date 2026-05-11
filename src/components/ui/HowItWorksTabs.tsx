@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DollarSign, Trophy, Ticket } from "lucide-react";
+import { ScrollText, Heart, Ticket } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 
@@ -26,42 +26,42 @@ interface HowItWorksTabsProps {
 
 const defaultTabs: Tab[] = [
   {
-    value: "bid",
-    icon: <DollarSign className="h-auto w-4 shrink-0" />,
-    label: "Bid on Your City",
+    value: "scroll",
+    icon: <ScrollText className="h-auto w-4 shrink-0" />,
+    label: "Scroll & Discover",
     content: {
-      badge: "Step 01 — Fan Action",
-      title: "Vote with your wallet. Show your city wants it.",
+      badge: "Step 01 — Explore",
+      title: "Scroll through new music and film from independent artists.",
       description:
-        "Choose your city and place your bid (minimum $10 CAD). Bid as high as you want to prove the demand is real. Every dollar is a vote that pushes your city up the leaderboard.",
+        "Browse a curated platform of original content submitted by musicians and filmmakers from around the world. Every scroll surfaces undiscovered talent ready for your attention.",
       imageSrc:
-        "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=560&fit=crop",
-      imageAlt: "Crowd at a concert cheering",
+        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&h=560&fit=crop",
+      imageAlt: "Person scrolling through music content on a phone",
     },
   },
   {
-    value: "win",
-    icon: <Trophy className="h-auto w-4 shrink-0" />,
-    label: "Win the Show",
+    value: "back",
+    icon: <Heart className="h-auto w-4 shrink-0" />,
+    label: "Back the Project",
     content: {
-      badge: "Step 02 — The Awksion",
-      title: "The city that bids the most brings the artist home.",
+      badge: "Step 02 — Support",
+      title: "Vote for the projects you want brought to life.",
       description:
-        "When the Awksion timer ends, the city that raised the most wins the concert. Real demand, real data — no more artists guessing where to go. No more empty rooms.",
+        "When you find an artist or filmmaker you believe in, back them. Your pledge is a vote that tells the world — and the creator — this work deserves to exist. Fan support determines what gets made.",
       imageSrc:
         "https://images.unsplash.com/photo-1501612780327-45045538702b?w=800&h=560&fit=crop",
-      imageAlt: "Artist on stage in front of a packed crowd",
+      imageAlt: "Fans cheering for an artist at a live event",
     },
   },
   {
     value: "ticket",
     icon: <Ticket className="h-auto w-4 shrink-0" />,
-    label: "Secure Your Ticket",
+    label: "Get Your Access",
     content: {
-      badge: "Step 03 — Your Reward",
-      title: "Top bidders get the front row. Every bidder gets in.",
+      badge: "Step 03 — Reward",
+      title: "When the art is made, your access is waiting.",
       description:
-        "If your city wins, you get a ticket. For intimate venues, the highest bidders lock in VIP front-row access. Your bid directly determines how close you are to the stage.",
+        "Backers of successful projects receive early access, exclusive content, or tickets to the premiere or live event. Your support turns into a front-row seat to something new.",
       imageSrc:
         "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=560&fit=crop",
       imageAlt: "Fan at a live music event close to the stage",
@@ -71,7 +71,7 @@ const defaultTabs: Tab[] = [
 
 export function HowItWorksTabs({
   heading = "How It Works",
-  description = "Vote with your wallet. Bring the tour to you. Three steps — zero guessing.",
+  description = "Scroll. Back what you believe in. Get access when it's made.",
   tabs = defaultTabs,
 }: HowItWorksTabsProps) {
   return (

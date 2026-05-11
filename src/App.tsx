@@ -2,8 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Waitlist from './pages/Waitlist';
-import ArtistPlaybook from './pages/ArtistPlaybook';
-import VenueIntelligence from './pages/VenueIntelligence';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -12,8 +11,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/waitlist" element={<Waitlist />} />
-          <Route path="/artist-playbook" element={<ArtistPlaybook />} />
-          <Route path="/venue-intelligence" element={<VenueIntelligence />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

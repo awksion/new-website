@@ -1,17 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search } from 'lucide-react';
-
-const navLinks = [
-  { label: 'Artist Playbook', to: '/artist-playbook' },
-  { label: 'Venues', to: '/venue-intelligence' },
-  { label: 'Waitlist', to: '/waitlist' },
-];
+import { Search } from 'lucide-react';
 
 const scannerTexts = ['SCANNING NETWORK...', 'CONNECTION FAILED.', 'NO MATCHING AWKSIONS FOUND.'];
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scannerIndex, setScannerIndex] = useState(0);
@@ -33,7 +26,6 @@ export default function Header() {
   }, [searchOpen]);
 
   useEffect(() => {
-    setMobileOpen(false);
     setSearchOpen(false);
   }, [location]);
 
@@ -44,31 +36,27 @@ export default function Header() {
       }`}
     >
       <div className="section-container flex items-center justify-between h-16">
-        {/* Logo — bold #B4FF00 button */}
-        <Link
-          to="/"
-          className="flex-shrink-0 bg-[#B4FF00] text-black font-black text-sm px-4 py-1.5 rounded-md tracking-tight hover:bg-[#c8ff33] transition-colors"
-        >
-          awksion
-        </Link>
+        {/* Left spacer */}
+        <div className="flex-1" />
 
-        {/* Desktop Nav — centered */}
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-foreground ${
-                location.pathname === link.to ? 'text-foreground' : 'text-muted-foreground'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Center — logo + waitlist */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Link
+            to="/"
+            className="flex-shrink-0 bg-white/10 text-white font-semibold text-xs px-3 sm:px-4 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors tracking-tight"
+          >
+            awksion
+          </Link>
+          <Link
+            to="/waitlist"
+            className="flex-shrink-0 bg-white/10 text-white font-semibold text-xs px-3 sm:px-4 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors tracking-tight"
+          >
+            Waitlist
+          </Link>
+        </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-4">
+        <div className="flex-1 flex items-center justify-end gap-2 sm:gap-4">
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             className="p-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
@@ -76,16 +64,7 @@ export default function Header() {
           >
             <Search className="w-5 h-5" />
           </button>
-          <Link to="/waitlist" className="hidden md:inline-flex btn-neon text-xs px-4 py-2">
-            Join Waitlist
-          </Link>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground cursor-pointer"
-            aria-label="Menu"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+
         </div>
       </div>
 
@@ -109,25 +88,7 @@ export default function Header() {
         </div>
       )}
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border">
-          <nav className="section-container py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link to="/waitlist" className="btn-neon text-xs px-4 py-2 w-fit">
-              Join Waitlist
-            </Link>
-          </nav>
-        </div>
-      )}
+      {/* Mobile Menu — hidden since both buttons are always visible */}
     </header>
   );
 }

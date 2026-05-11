@@ -4,24 +4,28 @@ import { motion } from 'framer-motion';
 
 const faqItems = [
   {
-    q: "What if my city doesn't win?",
-    a: "If your city doesn't raise the most funds, your bid is released. No money is charged unless the show is confirmed for your location. Your support still helps artists see where their fans are for future tour planning.",
+    q: 'When can I enter the contest?',
+    a: 'Pre-selection begins June 1st 2026 and ends August 31st 2026. Entries will be reviewed by a panel at Awksion. Winning entries will be added to a pool of content fans will be able to scroll and vote on.',
   },
   {
-    q: 'How do I get my ticket?',
-    a: "Once an Awksion ends and your city wins, tickets are automatically assigned to the highest bidders based on venue capacity. You'll receive a digital ticket directly in your Awksion account and via email immediately.",
+    q: 'When will the general public get to view and vote on my video?',
+    a: 'Q1 begins January 1st 2027 and ends March 31st 2027. Votes will be counted and the top music videos, short films, and feature films will be showcased at Awksion\'s first ever Viewers Choice Festival airing live online on April 30th 2027.',
   },
   {
-    q: 'What is the minimum bid?',
-    a: 'The minimum bid to participate in an Awksion is $10 CAD. You can bid higher to increase your city\'s chances of winning and to secure your spot if the venue has a limited capacity leaderboard.',
+    q: 'Will my entry be considered for an award?',
+    a: 'Ending the evening on April 30 2027 will be an awards ceremony for the winner of each category.',
   },
   {
-    q: 'How does the AI help venues?',
-    a: 'Venues use our AI dashboard to access real-time fan density heatmaps and bidding data. This ensures every show is a guaranteed sell-out, removing the financial risk of booking empty rooms or guessing local demand.',
+    q: 'Is the festival online or in-person?',
+    a: 'Yes to both! Viewers choice festivals will air online quarterly after public voting rounds. To keep it fresh each quarter there will be a batch of new content for the general public to vote on. There will be a grand in-person festival and ceremony occurring in Canada in Spring 2028 for the top 10 winners of 2027.',
   },
   {
-    q: 'Can I change my bid once placed?',
-    a: 'Yes. You can increase your bid at any time while the Awksion is active. This helps your city stay in the lead and ensures you remain at the top of the list for tickets in smaller, high-demand venues.',
+    q: 'I missed the deadline to apply. Can I still enter the contest?',
+    a: 'Stay tuned for the next submission period. Q2 entries will be open soon, with further entries being accepted on a rolling basis.',
+  },
+  {
+    q: 'Are there other considerations for me to qualify?',
+    a: 'In order for your videos to qualify, musicians must pledge a tour in 2027/2028 and filmmakers must be actively working on a new project that will be in production in 2027/2028. Fan-funding options will be available for those who generate enough interest. Please include your merch stores in your application if you have one.',
   },
 ];
 
@@ -66,25 +70,30 @@ export default function Waitlist() {
         <div className="relative z-10 text-center px-4 max-w-2xl mx-auto">
           <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible">
             <span className="inline-block px-4 py-1.5 rounded-full border border-[#B4FF00]/30 text-[#B4FF00] text-xs font-mono uppercase tracking-wider mb-8">
-              In Development — Launching Soon
+              Launching Soon
             </span>
           </motion.div>
 
           <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-none mb-3 text-white">
-              Bringing the Tour
+              Viewers Choice
             </h1>
           </motion.div>
 
           <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif italic font-normal text-white/80 mb-6">
-              To Your City.
+              Competition.
             </h2>
           </motion.div>
 
           <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible">
-            <p className="text-white/50 text-base mb-2">Be the first to know when we go live.</p>
-            <p className="text-white/50 text-base mb-10">Join the waitlist for exclusive early access.</p>
+            <p className="text-white/50 text-base mb-2">Submissions will be open June 1st 2026.</p>
+            <p className="text-white/50 text-base mb-4">
+              April 30th, 2027 will be Awksion&apos;s first ever Film and Music Festival, showcasing Canadian and International talent.
+            </p>
+            <p className="text-white/40 text-sm mb-10">
+              Talented artists don&apos;t always have the marketing budget to promote their work — it will be the fans that make you famous.
+            </p>
           </motion.div>
 
           <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible">
@@ -96,18 +105,18 @@ export default function Waitlist() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex items-center gap-0 max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0 max-w-md mx-auto w-full">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter Your Email"
-                  className="flex-1 bg-white/5 border border-white/20 rounded-l-full px-6 py-3.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#B4FF00]/50 transition-colors"
+                  className="flex-1 bg-white/5 border border-white/20 rounded-full sm:rounded-l-full sm:rounded-r-none px-6 py-3.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#B4FF00]/50 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="bg-white text-black font-bold text-sm px-6 py-3.5 rounded-r-full hover:bg-[#B4FF00] transition-colors whitespace-nowrap"
+                  className="bg-white text-black font-bold text-sm px-6 py-3.5 rounded-full sm:rounded-l-none sm:rounded-r-full hover:bg-[#B4FF00] transition-colors whitespace-nowrap"
                 >
                   Join The Waitlist
                 </button>
@@ -140,11 +149,11 @@ export default function Waitlist() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-[#070707]">
+      <section className="py-12 sm:py-20 md:py-24 bg-[#070707]">
         <div className="section-container max-w-3xl">
           <h2 className="text-3xl font-bold text-center mb-4 text-white">FAQ</h2>
           <p className="text-center text-white/50 mb-12">
-            Everything you need to know about flipping the touring model
+            Everything you need to know about the Viewers Choice Competition
           </p>
           <div className="space-y-4">
             {faqItems.map((item, i) => (
