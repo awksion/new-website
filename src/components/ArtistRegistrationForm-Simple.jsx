@@ -21,7 +21,7 @@ const ArtistRegistrationForm = () => {
   });
 
   // ⚠️ CHANGE THIS to your actual WordPress site URL
-  const WORDPRESS_URL = 'https://awksion.ai';
+  const WORDPRESS_URL = 'https://api.awksion.ai';
   const API_ENDPOINT = `${WORDPRESS_URL}/wp-json/artist-form/v1/submit`;
 
   const handleChange = (e) => {
