@@ -38,11 +38,10 @@ const fadeUp = {
   }),
 };
 
-const WORDPRESS_URL = 'https://awksion.ai';
-
 export default function Waitlist() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -50,19 +49,29 @@ export default function Waitlist() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
+    // Basic client-side email validation before sending to server
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
+
     try {
-      const response = await fetch(`${WORDPRESS_URL}/wp-json/waitlist/v1/subscribe`, {
+      const response = await fetch('/.netlify/functions/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, name }),
       });
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Submission failed');
+        throw new Error(data.message || 'Submission failed. Please try again.');
       }
       setSubmitted(true);
+      setEmail('');
+      setName('');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
@@ -131,22 +140,33 @@ export default function Waitlist() {
                 {error && (
                   <p className="text-red-400 text-sm mb-3">{error}</p>
                 )}
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0 max-w-md mx-auto w-full">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md mx-auto w-full">
                   <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter Your Email"
-                    className="flex-1 bg-white/5 border border-white/20 rounded-full sm:rounded-l-full sm:rounded-r-none px-6 py-3.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#B4FF00]/50 transition-colors"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your Name (optional)"
+                    aria-label="Your name"
+                    className="bg-white/5 border border-white/20 rounded-full px-6 py-3.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#B4FF00]/50 transition-colors"
                   />
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="bg-white text-black font-bold text-sm px-6 py-3.5 rounded-full sm:rounded-l-none sm:rounded-r-full hover:bg-[#B4FF00] transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {loading ? 'Joining...' : 'Join The Waitlist'}
-                  </button>
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter Your Email"
+                      aria-label="Email address"
+                      className="flex-1 bg-white/5 border border-white/20 rounded-full sm:rounded-l-full sm:rounded-r-none px-6 py-3.5 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#B4FF00]/50 transition-colors"
+                    />
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="bg-white text-black font-bold text-sm px-6 py-3.5 rounded-full sm:rounded-l-none sm:rounded-r-full hover:bg-[#B4FF00] transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {loading ? 'Joining...' : 'Join The Waitlist'}
+                    </button>
+                  </div>
                 </form>
               </>
             )}

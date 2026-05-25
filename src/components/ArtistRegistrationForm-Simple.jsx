@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 /**
  * Artist Registration Form Component
- * Submits directly to WordPress - data saved in WordPress database only
+ * Submits to the Netlify serverless function at /.netlify/functions/artist-registration
  */
 const ArtistRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -20,10 +20,6 @@ const ArtistRegistrationForm = () => {
     error: null
   });
 
-  // ⚠️ CHANGE THIS to your actual WordPress site URL
-  const WORDPRESS_URL = 'https://awksion.ai';
-  const API_ENDPOINT = `${WORDPRESS_URL}/wp-json/artist-form/v1/submit`;
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -37,7 +33,7 @@ const ArtistRegistrationForm = () => {
     setStatus({ loading: true, success: false, error: null });
 
     try {
-      const response = await fetch(API_ENDPOINT, {
+      const response = await fetch('/.netlify/functions/artist-registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +48,7 @@ const ArtistRegistrationForm = () => {
       }
 
       setStatus({ loading: false, success: true, error: null });
-      
+
       // Reset form
       setFormData({
         email: '',
