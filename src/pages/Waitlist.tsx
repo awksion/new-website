@@ -38,7 +38,7 @@ const fadeUp = {
   }),
 };
 
-const WORDPRESS_URL = 'https://wp.awksion.ai';
+const WORDPRESS_URL = 'https://awksion.ai';
 
 export default function Waitlist() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
