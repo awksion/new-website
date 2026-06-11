@@ -1,7 +1,6 @@
-import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { HeroGeometric } from '@/components/ui/shape-landing-hero';
-const HowItWorksTabs = lazy(() => import('@/components/ui/HowItWorksTabs').then(m => ({ default: m.HowItWorksTabs })));
+import { HowItWorksCards } from '@/components/ui/HowItWorksCards';
 
 export default function Home() {
   return (
@@ -15,10 +14,8 @@ export default function Home() {
       />
 
       {/* How It Works */}
-      <section id="how-it-works" className="bg-[#050505]">
-        <Suspense fallback={<div className="h-64 bg-[#050505]" />}>
-          <HowItWorksTabs />
-        </Suspense>
+      <section id="how-it-works">
+        <HowItWorksCards />
       </section>
 
       {/* Call for Subscribers */}
